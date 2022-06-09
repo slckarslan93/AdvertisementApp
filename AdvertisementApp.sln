@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Common", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Entities", "AdvertisementApp.Entities\AdvertisementApp.Entities.csproj", "{98FB9B60-F106-45B4-9811-0DE07ED6F109}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.DataAccess", "AdvertisementApp.DataAccess\AdvertisementApp.DataAccess.csproj", "{1A3C4812-21C5-429E-AB84-8D99CD2AC2F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{98FB9B60-F106-45B4-9811-0DE07ED6F109}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98FB9B60-F106-45B4-9811-0DE07ED6F109}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98FB9B60-F106-45B4-9811-0DE07ED6F109}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A3C4812-21C5-429E-AB84-8D99CD2AC2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A3C4812-21C5-429E-AB84-8D99CD2AC2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A3C4812-21C5-429E-AB84-8D99CD2AC2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A3C4812-21C5-429E-AB84-8D99CD2AC2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
