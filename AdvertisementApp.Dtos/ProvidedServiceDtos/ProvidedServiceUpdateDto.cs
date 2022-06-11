@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdvertisementApp.Dtos.ProvidedServiceDtos
+namespace AdvertisementApp.Dtos
 {
-    public class ProvidedServiceUpdateDto:IDto
+    public class ProvidedServiceUpdateDto: IUpdateDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string ImagePath { get; set; }
         public string Description { get; set; }
         public DateTime CreatedDate { get; set; }
-
+        
     }
 }

@@ -16,7 +16,7 @@ namespace AdvertisementApp.Business.Services
 {
     public class Service<CreateDto, UpdateDto, ListDto,T> : IService<CreateDto, UpdateDto, ListDto,T>
         where CreateDto : class, IDto, new()
-        where UpdateDto : class, IDto, new()
+        where UpdateDto : class, IUpdateDto, new()
         where ListDto : class, IDto, new()
         where T : BaseEntity
     {
@@ -46,24 +46,59 @@ namespace AdvertisementApp.Business.Services
             
         }
 
-        public Task<IResponse<List<ListDto>>> GetAllAsync()
+        public async Task<IResponse<List<ListDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var data = await _uow.GetRepository<T>().GetAllAsync();
+            var dto = _mapper.Map<List<ListDto>>(data);
+            return new Response<List<ListDto>>(ResponseType.Success, dto);
         }
 
-        public Task<IResponse<IDto>> GetByIdAsync(int id)
+        public async Task<IResponse<IDto>> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var data = await _uow.GetRepository<T>().GetByFilterAsync(x => x.Id == id);
+            if (data==null)
+            {
+                return new Response<IDto>(ResponseType.NotFound, $"{id} ye sahip data bulunamadı");
+            }
+            
+            
+                var dto = _mapper.Map<IDto>(data);
+                return new Response<IDto>(ResponseType.Success, dto);
+            
+            
+
         }
 
-        public Task<IResponse> RemoveAsync(int id)
+        public async Task<IResponse> RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            var data = await _uow.GetRepository<T>().FindAsync(id);
+            if (data == null)
+            {
+                return new Response(ResponseType.NotFound, $"{id} ye sahip data bulunamadı");
+            }
+            
+            
+                _uow.GetRepository<T>().Remove(data);
+                return new Response(ResponseType.Success);
+            
         }
 
-        public Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto)
+        public async Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto)
         {
-            throw new NotImplementedException();
+           var result =  _updateDtoValidator.Validate(dto);
+            if (result.IsValid)
+            {
+                var unchangedData= await _uow.GetRepository<T>().FindAsync(dto.Id);
+                if (unchangedData == null)
+                {
+                    return new Response<UpdateDto>(ResponseType.NotFound, $"{dto.Id} idsine sahip data bulunamadı");
+                }
+                var entity = _mapper.Map<T>(dto);
+                _uow.GetRepository<T>().Update(entity, unchangedData);
+                return new Response<UpdateDto>(ResponseType.Success, dto);
+            }
+            return new Response<UpdateDto>(dto, result.ConvertToCustomValidationError());
         }
+          
     }
 }

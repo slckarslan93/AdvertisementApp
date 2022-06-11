@@ -1,7 +1,11 @@
-﻿using AdvertisementApp.Business.ValidationRules;
+﻿using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.Business.Mappings.AutoMapper;
+using AdvertisementApp.Business.Services;
+using AdvertisementApp.Business.ValidationRules;
 using AdvertisementApp.DataAccess.Contexts;
 using AdvertisementApp.DataAccess.UnitOfWork;
-using AdvertisementApp.Dtos.ProvidedServiceDtos;
+using AdvertisementApp.Dtos;
+using AdvertisementApp.Entities;
 using AutoMapper;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +31,7 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
 
             var mapperConfiguration = new MapperConfiguration(opt =>
             {
-                
+                opt.AddProfile(new ProvidedServiceProfile());
             });
 
             var mapper =  mapperConfiguration.CreateMapper();
@@ -37,6 +41,7 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
             services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
 
+            services.AddScoped<IProvidedServiceService, ProvidedServiceService>();
         }
 
 
