@@ -8,10 +8,12 @@ namespace AdvertisementApp.UI.Controllers
     public class HomeController : Controller
     {
         private readonly IProvidedServiceService _providedServiceService;
+        private readonly IAdvertisementService _advertisingService;
 
-        public HomeController(IProvidedServiceService providedServiceService)
+        public HomeController(IProvidedServiceService providedServiceService, IAdvertisementService advertisingService)
         {
             _providedServiceService = providedServiceService;
+            _advertisingService = advertisingService;
         }
 
         public async Task<IActionResult> Index()
@@ -20,9 +22,10 @@ namespace AdvertisementApp.UI.Controllers
             return this.ResponseView(response);
         }
 
-        public IActionResult HumanResource()
+        public async Task<IActionResult> HumanResource()
         {
-            return View();
+            var response =await _advertisingService.GetActivesAsync();
+            return this.ResponseView(response);
         }
 
     }
