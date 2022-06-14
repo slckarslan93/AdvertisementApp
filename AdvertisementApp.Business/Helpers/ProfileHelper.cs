@@ -1,10 +1,10 @@
-﻿using AdvertisementApp.Business.Mappings.AutoMapper;
-using AutoMapper;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdvertisementApp.Business.Mappings.AutoMapper;
 
 namespace AdvertisementApp.Business.Helpers
 {
@@ -12,6 +12,7 @@ namespace AdvertisementApp.Business.Helpers
     {
         public static List<Profile> GetProfiles()
         {
+
             return new List<Profile>
             {
                 new ProvidedServiceProfile(),
@@ -19,8 +20,10 @@ namespace AdvertisementApp.Business.Helpers
                 new AppUserProfile(),
                 new GenderProfile(),
                 new AppRoleProfile(),
+                new AdvertisementAppUserProfile(),
+                new AdvertisementAppUserStatusProfile(),
+                new MilitaryStatusProfile(),
             };
-
         }
     }
 }
