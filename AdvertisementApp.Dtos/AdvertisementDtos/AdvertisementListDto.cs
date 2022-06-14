@@ -13,7 +13,7 @@ namespace AdvertisementApp.Dtos
         public string Title { get; set; }
         public bool Status { get; set; }
         public string Description { get; set; }
-        public DateTime CreateDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
     }
 }

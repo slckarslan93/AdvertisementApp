@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace AdvertisementApp.Common
 {
-    //response clasımızı İnterface ye implamente ediyoryuz
-    //data taşımayan response
-    public class Response:IResponse
+    public class Response : IResponse
     {
         public Response(ResponseType responseType)
         {
             ResponseType = responseType;
         }
-        public Response(ResponseType responseType,string message)
+
+        public Response(ResponseType responseType, string messsage)
         {
             ResponseType = responseType;
-            Message = message;
+            Message = messsage;
         }
-        public string Message { get; set; }
-        public ResponseType ResponseType { get; set; }
 
+        public string Message { get; set; }
+
+        public ResponseType ResponseType { get; set; }
     }
+
 
     public enum ResponseType
     {

@@ -1,29 +1,21 @@
 ﻿using AdvertisementApp.Business.Interfaces;
-using AdvertisementApp.Business.Mappings.AutoMapper;
 using AdvertisementApp.Business.Services;
 using AdvertisementApp.Business.ValidationRules;
 using AdvertisementApp.DataAccess.Contexts;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Dtos;
-using AdvertisementApp.Entities;
-using AutoMapper;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Udemy.AdvertisementApp.Business.ValidationRules;
-using Udemy.AdvertisementApp.Dtos;
+
+
 
 namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
 {
     public static class DependencyExtension
     {
-        public static void AddDependencies(this IServiceCollection services,IConfiguration configuration)
+        public static void AddDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AdvertisementAppContext>(opt =>
             {
@@ -32,8 +24,8 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddScoped<IUow, Uow>();
 
 
-            
-            
+
+
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
             services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
             services.AddTransient<IValidator<AdvertisementCreateDto>, AdvertisementCreateDtoValidator>();
@@ -52,7 +44,7 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddScoped<IGenderService, GenderService>();
             services.AddScoped<IAdvertisementAppUserService, AdvertisementAppUserService>();
         }
-       
+
 
     }
 }

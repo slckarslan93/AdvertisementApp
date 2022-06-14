@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AdvertisementApp.Dtos;
 using AdvertisementApp.Entities;
-using Udemy.AdvertisementApp.Dtos;
+
 
 namespace AdvertisementApp.Business.Mappings.AutoMapper
 {

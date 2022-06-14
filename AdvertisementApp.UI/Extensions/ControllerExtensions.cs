@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AdvertisementApp.Common;
 
-namespace Udemy.AdvertisementApp.UI.Extensions
+namespace AdvertisementApp.UI.Extensions
 {
     public static class ControllerExtensions
     {

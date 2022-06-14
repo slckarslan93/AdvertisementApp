@@ -3,6 +3,7 @@
     Layout = "_Layout";
 }
 <div class="dummy mt-5">
+
 </div>
 <div class="container my-3">
     <div class="accordion" id="accordionExample">
@@ -14,9 +15,10 @@
                         @Model[i].Title
                     </button>
                 </h2>
-                <div id="collapse-@Model[i].Id" class="accordion-collapse collapse @(i==0?"show":"")" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapse-@Model[i].Id" class="accordion-collapse collapse @(i==0?"show":"")" aria-labelledby="heading-@Model[i].Id" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        @Model[i].Description
+                        @Html.Raw(Model[i].Description)
+
                         <div>
                             @if (User.Identity.IsAuthenticated)
                             {
@@ -24,14 +26,17 @@
                             }
                             else
                             {
-                                 <div class="alert alert-light text-center ">
-                                     Başvuru yapabilmeniz için giriş yapmanız gerekmektedir <a asp-action="SignIn" asp-controller="Account">Giriş yap</a>
-                                 </div>
+                                <div class="alert alert-light text-center">
+                                    Başvuru yapabilmeniz için giriş yapmanız gerekmektedir. <a asp-action="SignIn" asp-controller="Account">Giriş Yap</a>
+                                </div>
                             }
+
                         </div>
                     </div>
                 </div>
             </div>
         }
+
     </div>
 </div>
+

@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Common
 {
-    public interface IResponse<T>:IResponse
+    public interface IResponse<T> : IResponse
     {
-         List<CustomValidationError> ValidationErrors { get; set; }
-         T Data { get; set; }
+        T Data { get; set; }
 
-
+        List<CustomValidationError> ValidationErrors { get; set; }
     }
 }

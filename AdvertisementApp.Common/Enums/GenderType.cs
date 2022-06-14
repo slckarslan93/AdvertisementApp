@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Common.Enums
 {
-    public enum OrderByType
+    public enum GenderType
     {
-        ASC = 1,
-        DESC = 2
+        Erkek = 1,
+        Kadin = 2,
     }
 }

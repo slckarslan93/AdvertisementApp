@@ -1,16 +1,16 @@
-﻿using AdvertisementApp.Business.Extensions;
-using AdvertisementApp.Business.Interfaces;
-using AdvertisementApp.Common;
-using AdvertisementApp.DataAccess.UnitOfWork;
-using AdvertisementApp.Dtos.Interfaces;
-using AdvertisementApp.Entities;
-using AutoMapper;
+﻿using AutoMapper;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdvertisementApp.Business.Extensions;
+using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.Common;
+using AdvertisementApp.DataAccess.UnitOfWork;
+using AdvertisementApp.Dtos.Interfaces;
+using AdvertisementApp.Entities;
 
 namespace AdvertisementApp.Business.Services
 {
@@ -44,7 +44,6 @@ namespace AdvertisementApp.Business.Services
                 return new Response<CreateDto>(ResponseType.Success, dto);
             }
             return new Response<CreateDto>(dto, result.ConvertToCustomValidationError());
-
         }
 
         public async Task<IResponse<List<ListDto>>> GetAllAsync()
@@ -54,35 +53,23 @@ namespace AdvertisementApp.Business.Services
             return new Response<List<ListDto>>(ResponseType.Success, dto);
         }
 
-        public async Task<IResponse<IDto>> GetByIdAsync(int id)
+        public async Task<IResponse<IDto>> GetByIdAsync<IDto>(int id)
         {
             var data = await _uow.GetRepository<T>().GetByFilterAsync(x => x.Id == id);
             if (data == null)
-            {
-                return new Response<IDto>(ResponseType.NotFound, $"{id} ye sahip data bulunamadı");
-            }
-
-
+                return new Response<IDto>(ResponseType.NotFound, $"{id} idsine sahip data bulunamadı");
             var dto = _mapper.Map<IDto>(data);
             return new Response<IDto>(ResponseType.Success, dto);
-
-
-
         }
 
         public async Task<IResponse> RemoveAsync(int id)
         {
             var data = await _uow.GetRepository<T>().FindAsync(id);
             if (data == null)
-            {
-                return new Response(ResponseType.NotFound, $"{id} ye sahip data bulunamadı");
-            }
-
-
+                return new Response(ResponseType.NotFound, $"{id} idsine sahip data bulunamadı");
             _uow.GetRepository<T>().Remove(data);
             await _uow.SaveChangesAsync();
             return new Response(ResponseType.Success);
-
         }
 
         public async Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto)
@@ -92,9 +79,7 @@ namespace AdvertisementApp.Business.Services
             {
                 var unchangedData = await _uow.GetRepository<T>().FindAsync(dto.Id);
                 if (unchangedData == null)
-                {
                     return new Response<UpdateDto>(ResponseType.NotFound, $"{dto.Id} idsine sahip data bulunamadı");
-                }
                 var entity = _mapper.Map<T>(dto);
                 _uow.GetRepository<T>().Update(entity, unchangedData);
                 await _uow.SaveChangesAsync();
@@ -102,6 +87,5 @@ namespace AdvertisementApp.Business.Services
             }
             return new Response<UpdateDto>(dto, result.ConvertToCustomValidationError());
         }
-
     }
 }

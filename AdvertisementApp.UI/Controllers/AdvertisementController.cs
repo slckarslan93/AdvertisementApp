@@ -1,6 +1,4 @@
-﻿using AdvertisementApp.Dtos;
-using AdvertisementApp.UI.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -14,8 +12,7 @@ using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Dtos;
 using AdvertisementApp.UI.Extensions;
 using AdvertisementApp.UI.Models;
-using AdvertisementApp.Common.Enums;
-using AdvertisementApp.Dtos;
+using AdvertisementApp.Common;
 
 namespace Udemy.AdvertisementApp.UI.Controllers
 {
@@ -89,7 +86,7 @@ namespace Udemy.AdvertisementApp.UI.Controllers
             dto.WorkExperience = model.WorkExperience;
 
             var response = await _advertisementAppUserService.CreateAsync(dto);
-            if (response.ResponseType == Common.ResponseType.ValidationError)
+            if (response.ResponseType == ResponseType.ValidationError)
             {
                 foreach (var error in response.ValidationErrors)
                 {

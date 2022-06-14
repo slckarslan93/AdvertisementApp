@@ -1,9 +1,8 @@
 ﻿using FluentValidation;
 using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Dtos;
-using Udemy.AdvertisementApp.Dtos;
 
-namespace Udemy.AdvertisementApp.Business.ValidationRules
+namespace AdvertisementApp.Business.ValidationRules
 {
     public class AdvertisementAppUserCreateDtoValidator : AbstractValidator<AdvertisementAppUserCreateDto>
     {
